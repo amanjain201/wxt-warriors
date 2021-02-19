@@ -13,9 +13,8 @@ const routes: Routes = [
       pathMatch: 'full'
     },
     {
-      path: 'rooms',
-      component: RoomComponent,
-      canActivate: [AuthGuard]
+      path: 'webex',
+      component: RoomComponent
     }
   ];
   

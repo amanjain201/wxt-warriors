@@ -1,5 +1,5 @@
 <div class="wrapper">
-    <nav id="sidebar">
+    <nav id="sidebar" *ngIf = "router.url !== '/'">
         <app-navbar></app-navbar>
     </nav>
     <div class="context" id="main">

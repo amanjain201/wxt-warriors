@@ -1,13 +1,12 @@
 .center {
-    position: relative;
-    margin: auto;
-    width: 70%;
-    height: 850px;
-    /* border: 1px solid grey; */
-    padding: 10px;
-    z-index: 5;
-    /* box-shadow: 5px 10px #888888; */
-    margin-top: 400px;
+  position: relative;
+  margin: auto;
+  width: 100%;
+  height: 850px;
+  padding: 10px;
+  z-index: 5;
+  margin-top: 345px;
+  text-align: center;
   }
 
   pre {
@@ -21,4 +20,10 @@
 .logo {
   height: 100px;
   width :100px;
+  padding: 4px 4px 4px 4px
+}
+
+.login-btn {
+  width: 107px;
+  margin-top: 8px;   
 }

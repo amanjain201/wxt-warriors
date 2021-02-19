@@ -4,9 +4,11 @@
 
 export const environment = {
   production: false,
-  client_id: 'C363c710f07a19092b369a1006c6a022646e76bc3a04f321e3d9924281813292a',
-  client_secret: 'd6282b3b9cc349cfa0b7a42b212c12324e17ad2146a656cbcad10fe69bf6c657',
-  redirect_uri: 'http://localhost:4200',
+  client_id_a: 'C363c710f07a19092b369a1006c6a022646e76bc3a04f321e3d9924281813292a',
+  client_secret_a: 'd6282b3b9cc349cfa0b7a42b212c12324e17ad2146a656cbcad10fe69bf6c657',
+  client_id: 'Cfcebe7dfa60f1a38e2ea550cebe4fb11fdb75bb08f61558811ca611f0d394480',
+  client_secret: '973599f41b2267f7093e52dfef51fc214855f0b99095b0a3098ab7216b75035b',
+  redirect_uri: 'http://localhost:4200/webex',
   scope: 'spark:all spark:kms'
 };
 

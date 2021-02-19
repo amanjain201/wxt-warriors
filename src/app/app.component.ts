@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import Webex from 'webex';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,9 @@ import Webex from 'webex';
 export class AppComponent {
   title = 'CodeFestApp';
   webex: any;
+
+  constructor(public router: Router) {
+  }
 
   ngOnInit(): void {
     // let redirect_uri = "http://localhost:4200";
