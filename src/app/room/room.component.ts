@@ -33,7 +33,6 @@ export class RoomComponent implements OnInit {
   }
 
   removeRoom() {
-    this.listRooms();
     this.webexService.removeRoom();
   }
 
@@ -46,5 +45,5 @@ export class RoomComponent implements OnInit {
   sendMessageToRoom() {
     this.webexService.sendMessageToRoom(this.message);
   }
-  
+
 }

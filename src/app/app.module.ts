@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { RoomComponent } from './room/room.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
-import { ButtonModule } from '@momentum-ui/angular';
+import { ButtonModule, ListModule, ListItemModule } from '@momentum-ui/angular';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,9 @@ import { ButtonModule } from '@momentum-ui/angular';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ButtonModule
+    ButtonModule,
+    ListModule,
+    ListItemModule
   ],
   providers: [],
   bootstrap: [AppComponent]

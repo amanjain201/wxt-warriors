@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { WebexService } from '../webex.service';
 
 @Component({
   selector: 'app-navbar',
@@ -6,10 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
-  constructor() { }
+  listOfRooms: any = [];
+  constructor(private webexService: WebexService) { }
 
   ngOnInit(): void {
+    this.webexService.initializeWebexObjectWithClientToken();
+    this.listRooms();
+  }
+
+  listRooms() {
+    this.webexService.onListRoom().then((rooms) => {
+      console.log(rooms.items)
+      this.listOfRooms = rooms.items;
+    })
   }
 
 }

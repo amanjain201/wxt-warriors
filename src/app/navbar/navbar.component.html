@@ -4,4 +4,10 @@
         <p class="nav-subheading">SDK Documentations</p>
     </div>
     <a routerLink="/rooms" routerLinkActive="active">Room</a>
+    <!-- <div *ngFor="let room of listOfRooms">
+        <a>{{room.title}}</a>
+    </div> -->
+    <md-list>
+        <div md-list-item *ngFor="let room of listOfRooms" label='{{room.title}}' class="list-rooms"></div>
+    </md-list>
 </div>
