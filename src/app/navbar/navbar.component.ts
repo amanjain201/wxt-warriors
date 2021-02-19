@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
+  showNav = false;
   constructor() { }
 
   ngOnInit(): void {
+    if(localStorage.getItem("webex_token") !== null) 
+    {
+      this.showNav = true;
+    }
   }
 
 }

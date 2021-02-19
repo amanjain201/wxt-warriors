@@ -3,11 +3,11 @@
     margin: auto;
     width: 70%;
     height: 850px;
-    border: 1px solid grey;
+    /* border: 1px solid grey; */
     padding: 10px;
     z-index: 5;
-    box-shadow: 5px 10px #888888;
-    margin-top: 10px;
+    /* box-shadow: 5px 10px #888888; */
+    margin-top: 400px;
   }
 
   pre {
@@ -16,4 +16,9 @@
     white-space: -pre-wrap;      /* Opera 4-6 */
     white-space: -o-pre-wrap;    /* Opera 7 */
     word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+
+.logo {
+  height: 100px;
+  width :100px;
 }

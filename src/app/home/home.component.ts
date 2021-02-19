@@ -12,11 +12,16 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("Inside Home!!!");
-    if(localStorage.getItem("webex_token") === null) {
-      this.webexService.performLogin();
-    }
-      
     
+      //this.webexService.performLogin();
+    
+      
+  }
+  login(){
+    // if(localStorage.getItem("webex_token") === null) 
+    // {
+    this.webexService.performLogin();
+    // }
   }
 
 }
