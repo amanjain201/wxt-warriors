@@ -1,0 +1,17 @@
+.center {
+    position: relative;
+    margin: auto;
+    width: 70%;
+    height: 850px;
+    border: 1px solid grey;
+    padding: 10px;
+    z-index: 5;
+    box-shadow: 5px 10px #888888;
+    margin-top: 10px;
+  }
+
+  .btn-css {
+    margin-left: 80px;
+  }
+
+  

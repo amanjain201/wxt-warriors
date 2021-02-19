@@ -1,0 +1,20 @@
+$brand-font-folder: '~@momentum-ui/core/fonts';
+$icon-font-path: '~@momentum-ui/icons/fonts';
+$images-path: '~@momentum-ui/core/images';
+@import "@momentum-ui/core/scss/momentum-ui.scss";
+@import '~@momentum-ui/core/scss/momentum-ui';
+@import '~@momentum-ui/core/scss/components/card/card.scss';
+@import '@momentum-ui/core/scss/components/select/select.scss';
+@import '@momentum-ui/core/scss/components/panel/panel.scss';
+@import '@momentum-ui/core/scss/components/tabs/tabs.scss';
+@import '@momentum-ui/core/scss/components/modal/modal.scss';
+@import "~@angular/cdk/overlay-prebuilt.css";
+@import "~@angular/cdk/a11y-prebuilt.css";
+.context{
+    padding:10px;
+}
+.md-alert__container--bottom-right {
+  left:42%;
+  top:10px;
+}
+

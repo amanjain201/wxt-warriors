@@ -1,0 +1,30 @@
+<div class="center">
+  <h1>Room SDKs</h1>
+
+  <div>
+    <h3>Create Room SDK example:</h3>
+    <input type="text" [(ngModel)]="roomName" id="roomName" />
+    <button class="btn-css" (click)="createRoom()">Create Room</button>
+    <!-- <div *ngIf="showRoomCreatedMessage">Congrats!! You generated your room {{roomName}} and unique room id is {{createdRoomId}}.</div> -->
+  </div>
+  <br>
+  <div>
+    <h3>Add User to Room SDK example:</h3>
+    <input type="text" [(ngModel)]="addUser" id="addUser" />
+    <button class="btn-css" (click)="addUserToRoom()">Add User</button>
+  </div>
+  <br>
+  <div>
+      <h3>Send Message to Room SDK example:</h3>
+    <input type="text" [(ngModel)]="message" id="message" />
+    <button class="btn-css" (click)="sendMessageToRoom()">Send Message</button>
+  </div>
+  <br>
+  <div>
+    <h3>Delete Room SDK example:</h3>
+    <!-- <input type="text" [(ngModel)]="deleteRoomId" id="deleteRoomId" /> -->
+    <button (click)="removeRoom()">Remove Room</button>
+  </div>
+  <br>
+  
+</div>
