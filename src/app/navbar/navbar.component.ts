@@ -24,7 +24,10 @@ export class NavbarComponent implements OnInit {
       console.log(err);
       // this.listRooms();
     })
+  }
 
+  hideRooms() {
+    this.showRooms = false;
   }
 
 }

@@ -7,8 +7,10 @@
     <!-- <div *ngFor="let room of listOfRooms">
         <a>{{room.title}}</a>
     </div> -->
+    <div class="dropdown-div-txt">Your Spaces</div>
     <div class="dropdown-div">
-        <i class="md-icon icon icon-arrow-down_24 dropdown-icon" (click)="listRooms()"></i>
+        <i class="md-icon icon icon-arrow-down_24 dropdown-icon" *ngIf="!showRooms" (click)="listRooms()"></i>
+        <i class="md-icon icon icon-arrow-up_24 dropdown-icon" *ngIf="showRooms" (click)="hideRooms()"></i>
     </div>
     
     <md-list *ngIf="showRooms">
