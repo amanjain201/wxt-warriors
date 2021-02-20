@@ -1,5 +1,5 @@
 .center {
-    position: relative;
+    /* position: relative;
     margin: auto;
     width: 70%;
     height: 850px;
@@ -7,11 +7,32 @@
     padding: 10px;
     z-index: 10;
     box-shadow: 5px 10px #888888;
-    margin-top: 10px;
+    margin-top: 10px; */
+    position: relative;
+    margin: auto;
+    width: 100px;
+    height: 100px;
+    padding: 10px;
+    z-index: 5;
+    margin-top: 345px;
+    text-align: center;
+    
   }
 
   .btn-css {
     margin-left: 80px;
+  }
+  .logout-btn{
+    margin-top: 10px;
+    text-align: right;
+  }
+
+  .sendmsg{
+    border-top: 1px solid black;
+  }
+
+  .message-right{
+    text-align: right;
   }
 
   

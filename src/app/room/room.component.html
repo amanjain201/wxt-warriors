@@ -3,13 +3,38 @@
     <app-navbar (roomDetails)="getRoomDetails($event)"></app-navbar>
   </nav>
   <div class="context" id="main" class="columns medium-10">
-    <div>
-      <md-list *ngFor="let message of listMessages">
-        <span class="md-badge md-badge--pastel">
-          <div md-list-item label='{{message.text}}'></div>
-        </span>
+    <div class="row logout-btn">
+      <button md-button aria-label="myAriaLabel" color="blue" (click)="logout()">
+        Logout
+      </button>
+    </div>
+    <div class="row">
+      <div class="center" *ngIf="!showMessages">
+        <img class="logo" src="assets/images/WebexTeams-icon.png" alt="WebEx Teams">
         <br>
-      </md-list>
+      </div>
+      <div>
+        <md-list *ngFor="let message of listMessages">
+          <span class="md-badge md-badge--blue-pastel">
+            <div md-list-item label='{{message.personEmail}}:'></div>
+          </span>
+          <br>
+          <div class="message-right">
+          <span class="md-badge md-badge--pastel ">
+            <div md-list-item label='{{message.text}}'></div>
+          </span>
+         </div>
+          <br>
+        </md-list>
+      </div>
+    </div>
+    <div class="row sendmsg" *ngIf="showMessages">
+      <md-input-container inputSize="medium-30" label="Write a message">
+        <input mdInput  [(ngModel)]="message" id="send-msg" />
+      </md-input-container>
+       <button md-button aria-label="myAriaLabel" color="blue" (click)="sendMessageToRoom()">
+        Send
+       </button>
     </div>
     <!-- <div class="center">
       <h1>Room SDKs</h1>
@@ -47,4 +72,4 @@
     </div>
   </div> -->
   </div>
-  </div>
+</div>

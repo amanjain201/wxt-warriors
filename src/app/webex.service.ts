@@ -85,11 +85,11 @@ export class WebexService {
     });
   }
 
-  sendMessageToRoom(message: string) {
-    console.log("Room id before message: " + this.createdRoomId);
+  async sendMessageToRoom(message: string, roomId: string) {
+    console.log("Room id before message: " + roomId);
     this.webex.messages.create({
       text: message,
-      roomId: this.createdRoomId
+      roomId: roomId
     })
   }
 
@@ -103,5 +103,9 @@ export class WebexService {
 
   viewMessageHistory(roomId){
     return this.webex.messages.list({ roomId: roomId });
+  }
+
+  onLogout(){
+    this.webex.logout();
   }
 }
