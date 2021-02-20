@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WebexService } from '../webex.service';
+import { Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
@@ -8,11 +9,12 @@ import { WebexService } from '../webex.service';
 })
 export class NavbarComponent implements OnInit {
   listOfRooms: any = [];
-  showRooms:boolean = false;
+  showRooms: boolean = false;
+  @Output() roomDetails = new EventEmitter<string>();
   constructor(private webexService: WebexService) { }
 
   ngOnInit(): void {
-    this.webexService.initializeWebexObjectWithClientToken()    
+    this.webexService.initializeWebexObjectWithClientToken()
   }
 
   listRooms() {
@@ -20,7 +22,7 @@ export class NavbarComponent implements OnInit {
       console.log(rooms.items)
       this.listOfRooms = rooms.items;
       this.showRooms = true;
-    }).catch((err)=>{
+    }).catch((err) => {
       console.log(err);
       // this.listRooms();
     })
@@ -30,4 +32,8 @@ export class NavbarComponent implements OnInit {
     this.showRooms = false;
   }
 
+  sendRoomDetails(room) {
+    //console.log(room);
+    this.roomDetails.emit(room);
+  }
 }

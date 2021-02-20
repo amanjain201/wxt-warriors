@@ -14,6 +14,6 @@
     </div>
     
     <md-list *ngIf="showRooms">
-        <div md-list-item *ngFor="let room of listOfRooms" label='{{room.title}}' class="list-rooms"></div>
+        <div md-list-item *ngFor="let room of listOfRooms" label='{{room.title}}' (click)="sendRoomDetails(room)" class="list-rooms"></div>
     </md-list>
 </div>

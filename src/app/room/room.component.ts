@@ -14,7 +14,8 @@ export class RoomComponent implements OnInit {
   message: string;
   deleteRoomId: string;
   showRoomCreatedMessage: boolean = false;
-
+  selectedRoomId: string;
+  listMessages;
   constructor(private webexService: WebexService) {
   }
 
@@ -43,6 +44,21 @@ export class RoomComponent implements OnInit {
 
   sendMessageToRoom() {
     this.webexService.sendMessageToRoom(this.message);
+  }
+
+  getRoomDetails(room){
+    this.selectedRoomId = room.id;
+    this.getMessageHistory();
+  }
+
+  getMessageHistory(){
+    let messages = this.webexService.viewMessageHistory(this.selectedRoomId);
+    messages.then((m)=>
+    {
+      this.listMessages=m.items;
+      this.listMessages.reverse();
+      console.log(this.listMessages);
+    });
   }
 
 }

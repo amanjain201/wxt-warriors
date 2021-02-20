@@ -100,4 +100,8 @@ export class WebexService {
     }
     return wbxMember;
   }
+
+  viewMessageHistory(roomId){
+    return this.webex.messages.list({ roomId: roomId });
+  }
 }
