@@ -105,7 +105,17 @@ export class WebexService {
     return this.webex.messages.list({ roomId: roomId });
   }
 
+  getInstance() {
+    return this.webex;
+  }
+
+  stopListeningToMessages() {
+    this.webex.messages.stopListening();
+    //alert("Stopped listening to message");
+  }
+
   onLogout(){
+    this.stopListeningToMessages();
     this.webex.logout();
   }
 }

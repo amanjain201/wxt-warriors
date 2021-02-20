@@ -17,10 +17,13 @@ export class RoomComponent implements OnInit {
   selectedRoomId: string;
   listMessages;
   showMessages = false;
+  webex;
+  incoming_msg;
   constructor(private webexService: WebexService) {
   }
 
   ngOnInit(): void {
+    
   }
 
   createRoom() {
@@ -37,16 +40,9 @@ export class RoomComponent implements OnInit {
     this.webexService.removeRoom();
   }
 
-  listRooms() {
-    this.webexService.onListRoom().then((rooms) => {
-      console.log(rooms)
-    })
-  }
-
   sendMessageToRoom() {
     this.webexService.sendMessageToRoom(this.message,this.selectedRoomId).then(()=>{
-      console.log("after send message")
-      this.getMessageHistory();
+      console.log("after send message");
       this.message = "";
     });
     
@@ -55,6 +51,28 @@ export class RoomComponent implements OnInit {
   getRoomDetails(room){
     this.selectedRoomId = room.id;
     this.getMessageHistory();
+    this.listenToMessages()
+  }
+
+  listenToMessages(){
+    this.webex = this.webexService.getInstance();
+    this.webex.messages.listen()
+    .then(() => {
+      alert('listening to message events');
+      this.webex.messages.on('created', (event) =>{
+        if (event.data.roomId === this.selectedRoomId)
+        {
+         console.log(`Got a message:created event:\n${event}`)
+         console.log(event);
+         this.listMessages.push(event.data);
+         return event;
+        }
+      }
+      );
+      //this.webex.messages.on('deleted', (event) => console.log(`Got a message:deleted event:\n${event}`));
+    })
+    .catch((e) => alert(`Unable to register for message events: ${e}`));
+ 
   }
 
   getMessageHistory(){
@@ -67,7 +85,7 @@ export class RoomComponent implements OnInit {
       console.log(this.listMessages);
     });
   }
-  
+
   logout(){
     this.webexService.onLogout();
   }

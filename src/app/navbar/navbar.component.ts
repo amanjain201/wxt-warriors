@@ -10,7 +10,9 @@ import { Output, EventEmitter } from '@angular/core';
 export class NavbarComponent implements OnInit {
   listOfRooms: any = [];
   showRooms: boolean = false;
+  incoming_msg_event;
   @Output() roomDetails = new EventEmitter<string>();
+
   constructor(private webexService: WebexService) { }
 
   ngOnInit(): void {
@@ -24,7 +26,6 @@ export class NavbarComponent implements OnInit {
       this.showRooms = true;
     }).catch((err) => {
       console.log(err);
-      // this.listRooms();
     })
   }
 
@@ -36,4 +37,5 @@ export class NavbarComponent implements OnInit {
     //console.log(room);
     this.roomDetails.emit(room);
   }
+
 }
