@@ -72,8 +72,8 @@ export class WebexService {
   }
 
   removeRoom() {
-    if(this.createdRoomId !== undefined && this.createdRoomId.length > 0) {
-    this.webex.rooms.remove(this.createdRoomId);
+    if (this.createdRoomId !== undefined && this.createdRoomId.length > 0) {
+      this.webex.rooms.remove(this.createdRoomId);
     } else {
       window.alert("No room has been created. Please create a room for it to be deleted.")
     }

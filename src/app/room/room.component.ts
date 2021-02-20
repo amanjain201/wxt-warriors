@@ -19,7 +19,6 @@ export class RoomComponent implements OnInit {
   }
 
   ngOnInit(): void {
-     this.webexService.initializeWebexObjectWithClientToken();
   }
 
   createRoom() {
