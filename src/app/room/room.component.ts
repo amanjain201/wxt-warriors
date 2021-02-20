@@ -19,17 +19,18 @@ export class RoomComponent implements OnInit {
   showMessages = false;
   webex;
   incoming_msg;
+  listenEventActivated: boolean = false;
   constructor(private webexService: WebexService) {
   }
 
   ngOnInit(): void {
-    
+
   }
 
   createRoom() {
     this.webexService.createRoom(this.roomName);
     this.createdRoomId = localStorage.getItem("createdRoomId");
-    this.showRoomCreatedMessage= true;
+    this.showRoomCreatedMessage = true;
   }
 
   addUserToRoom() {
@@ -41,52 +42,55 @@ export class RoomComponent implements OnInit {
   }
 
   sendMessageToRoom() {
-    this.webexService.sendMessageToRoom(this.message,this.selectedRoomId).then(()=>{
+    this.webexService.sendMessageToRoom(this.message, this.selectedRoomId).then(() => {
       console.log("after send message");
       this.message = "";
     });
+
+  }
+
+  getRoomDetails(room) {
+    this.selectedRoomId = room.id;
+    this.getMessageHistory();
+    if(this.listenEventActivated === false) {
+      this.listenToMessages();
+    }
     
   }
 
-  getRoomDetails(room){
-    this.selectedRoomId = room.id;
-    this.getMessageHistory();
-    this.listenToMessages()
-  }
-
-  listenToMessages(){
+  listenToMessages() {
     this.webex = this.webexService.getInstance();
-    this.webex.messages.listen()
-    .then(() => {
-      alert('listening to message events');
-      this.webex.messages.on('created', (event) =>{
-        if (event.data.roomId === this.selectedRoomId)
-        {
-         console.log(`Got a message:created event:\n${event}`)
-         console.log(event);
-         this.listMessages.push(event.data);
-         return event;
-        }
-      }
-      );
-      //this.webex.messages.on('deleted', (event) => console.log(`Got a message:deleted event:\n${event}`));
-    })
-    .catch((e) => alert(`Unable to register for message events: ${e}`));
- 
+      this.webex.messages.listen()
+        .then(() => {
+          this.listenEventActivated = true;
+          console.log('listening to message events');
+          this.webex.messages.on('created', (event) => {
+            if (event.data.roomId === this.selectedRoomId) {
+              console.log(`Got a message:created event:\n${event}`)
+              console.log(event);
+              this.listMessages.push(event.data);
+              return event;
+            }
+          }
+          );
+          //this.webex.messages.on('deleted', (event) => console.log(`Got a message:deleted event:\n${event}`));
+        })
+        .catch((e) => alert(`Unable to register for message events: ${e}`));
+
   }
 
-  getMessageHistory(){
-    this.showMessages=true;
+  getMessageHistory() {
+    this.listMessages = [];
+    this.showMessages = true;
     let messages = this.webexService.viewMessageHistory(this.selectedRoomId);
-    messages.then((m)=>
-    {
-      this.listMessages=m.items;
+    messages.then((m) => {
+      this.listMessages = m.items;
       this.listMessages.reverse();
       console.log(this.listMessages);
     });
   }
 
-  logout(){
+  logout() {
     this.webexService.onLogout();
   }
 

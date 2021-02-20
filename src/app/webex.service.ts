@@ -111,7 +111,7 @@ export class WebexService {
 
   stopListeningToMessages() {
     this.webex.messages.stopListening();
-    //alert("Stopped listening to message");
+    console.log("Stopped listening to message");
   }
 
   onLogout(){
