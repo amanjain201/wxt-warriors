@@ -17,11 +17,13 @@ export class RoomComponent implements OnInit {
   deleteRoomId: string;
   showRoomCreatedMessage: boolean = false;
   selectedRoomId: string;
+  selectedRoomTitle:string;
   listMessages;
   showMessages = false;
   webex;
   incoming_msg;
   listenEventActivated: boolean = false;
+  showAddUserModal = false;
   constructor(private webexService: WebexService) {
   }
 
@@ -40,6 +42,8 @@ export class RoomComponent implements OnInit {
   }
 
   addUserToRoom() {
+    let regex = new RegExp("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$");
+
     if (this.addUser === undefined || this.addUser.length === 0) {
       Swal.fire(
         'Error',
@@ -49,7 +53,16 @@ export class RoomComponent implements OnInit {
       // alert("Please enter a person email id to add")
       return;
     }
+    else if(!regex.test(this.addUser)) {
+       Swal.fire(
+          'Error',
+          'Please enter a valid email id',
+          'error'
+        )   
+    }
+    else { 
     this.webexService.addUserToRoom(this.addUser, this.selectedRoomId).then(() => {
+      this.showAddUserModal=false;
       Swal.fire(
         'Success',
         this.addUser + ' had been added successfully',
@@ -57,7 +70,16 @@ export class RoomComponent implements OnInit {
       ).then(() => {
         this.addUser = "";
       })
-    })
+     })
+    }
+  }
+
+  openAddUserModal(){
+    this.showAddUserModal = true;
+  }
+
+  closeAddUserModal(){
+    this.showAddUserModal = false;
   }
 
   removeRoom() {
@@ -73,7 +95,10 @@ export class RoomComponent implements OnInit {
   }
 
   getRoomDetails(room) {
+    //console.log("room details");
+    //console.log(room);
     this.selectedRoomId = room.id;
+    this.selectedRoomTitle = room.title;
     this.getMessageHistory();
     if (this.listenEventActivated === false) {
       this.listenToMessages();

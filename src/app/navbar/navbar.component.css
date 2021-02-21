@@ -72,7 +72,9 @@
 }
 
 .room-name-input{
-  width: 95%;
   margin-left: 2%;
   border-color: grey;
+  width: 95%;
+  border-radius: 25px;
 }
+
