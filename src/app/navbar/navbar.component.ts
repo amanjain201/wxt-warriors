@@ -53,6 +53,7 @@ export class NavbarComponent implements OnInit {
     }
     this.webexService.createRoom(this.roomName).then(() => {
       this.showCreateRoomModal = false;
+      this.listRooms();
       Swal.fire(
         'Success',
         this.roomName + ' has been created successfully',
@@ -60,6 +61,12 @@ export class NavbarComponent implements OnInit {
       ).then(() => {
         this.roomName = "";
       })
+    }).catch(err => {
+      Swal.fire(
+        'Error',
+        'Sorry room cannot be created !!!',
+        'error'
+      )
     });
   }
 
