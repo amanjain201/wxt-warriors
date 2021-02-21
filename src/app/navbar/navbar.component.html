@@ -1,7 +1,12 @@
 <div class="sidenav">
-    <div class="heading">
-        <a class="nav-heading" routerLink="/">Cisco WebEx</a>
-        <p class="nav-subheading">SDK Documentations</p>
+    <div class="heading row">
+        <div class="columns medium-9">
+            <a class="nav-heading" routerLink="/">Cisco WebEx</a>
+            <p class="nav-subheading">SDK Documentations</p>
+        </div>
+        <div class="columns medium-3">
+            <i class="md-icon icon icon-add_24 icon-weight-bold" (click)="openCreateRoomModal()"></i>
+        </div>
     </div>
     <a routerLink="/rooms" routerLinkActive="active">Room</a>
     <div class="dropdown-div-txt">Your Spaces</div>
@@ -9,8 +14,37 @@
         <i class="md-icon icon icon-arrow-down_24 dropdown-icon" *ngIf="!showRooms" (click)="listRooms()"></i>
         <i class="md-icon icon icon-arrow-up_24 dropdown-icon" *ngIf="showRooms" (click)="hideRooms()"></i>
     </div>
-    
+
     <md-list *ngIf="showRooms">
-        <div md-list-item *ngFor="let room of listOfRooms" label='{{room.title}}' (click)="sendRoomDetails(room)" class="list-rooms"></div>
+        <div md-list-item *ngFor="let room of listOfRooms" label='{{room.title}}' (click)="sendRoomDetails(room)"
+            class="list-rooms"></div>
     </md-list>
+</div>
+<div class="md-modal__backdrop fade in" *ngIf="showCreateRoomModal">
+    <div role="dialog" id="react-aria-modal-dialog" class="md-modal md-modal--small in" aria-labelledby="modal3">
+        <div class="md-modal__content">
+            <div class="md-modal__flex-container">
+                <div class="md-modal__header">
+                    <span class="md-modal__title">Create Room</span>
+                    <button class="md-close md-modal__close" (click)="closeModal()"></button>
+                </div>
+                <div class="md-modal__body">
+                    <md-input-container inputSize="medium-15">
+                        <input class="md-input member-input room-name-input" id="createRoomName" [(ngModel)]="roomName"
+                            type="text" placeholder="Please provide Room Name here">
+                    </md-input-container>
+                </div>
+                <div class="md-modal__footer">
+                    <button class="md-button md-button--36 md-button--default" alt="Close Modal" type="button"
+                        aria-label="Close Modal">
+                        <span class="md-button__children" style="opacity: 1;" (click)="closeModal()">Close</span>
+                    </button>
+                    <button class="md-button md-button--36 md-button--blue" alt="Submit Form" type="submit"
+                        aria-label="Submit Form">
+                        <span class="md-button__children" style="opacity: 1;" (click)="createRoom()">OK</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
