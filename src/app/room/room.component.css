@@ -63,13 +63,17 @@
   }
 
   .message-div {
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    hyphens: auto;
+    overflow-wrap: break-word!important;
+    word-wrap: break-word!important;
+    hyphens: auto!important;
   }
 
   .send-message-btn {
     text-align: center;
     padding-top: 12px;
+  }
+  
+  .message-content-style {
+    font-size: 15px;
   }
   

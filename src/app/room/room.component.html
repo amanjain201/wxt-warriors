@@ -68,10 +68,11 @@
             <div md-list-item label='{{message.personEmail}}:'></div>
           </span>
           <br>
-          <div class="message-right">
-            <span class="md-badge md-badge--pastel">
-              <div md-list-item class="message-div">{{message.text}}</div>
-            </span>
+          <div class="message-div">
+            <!-- <span class="md-badge md-badge--pastel"> -->
+              <!-- <div md-list-item>{{message.text}}</div> -->
+              <p class="message-content-style">{{message.text}}</p>
+            <!-- </span> -->
           </div>
           <br>
         </md-list>
