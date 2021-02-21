@@ -2,13 +2,62 @@
   <nav id="sidebar" class="columns medium-2">
     <app-navbar (roomDetails)="getRoomDetails($event)"></app-navbar>
   </nav>
+  <div class="top-bar-css">
+    <header md-top-bar color="dark">
+      <!-- <ng-container
+            *ngTemplateOutlet="brand"
+            ngProjectAs="brand"
+          ></ng-container> -->
+      <md-top-bar-nav>
+        <ng-container *ngTemplateOutlet="list"></ng-container>
+      </md-top-bar-nav>
+      <md-top-bar-right>
+        <div class="md-top-bar__user"></div>
+        <div class="md-top-bar__logged-out">
+          <button md-button color="blue" aria-label="myAriaLabel" (click)="logout()">
+            Logout
+          </button>
+        </div>
+      </md-top-bar-right>
+
+      <md-top-bar-mobile [shouldCloseOnClick]="false">
+        <!-- <ng-container
+              *ngTemplateOutlet="brand"
+              ngProjectAs="brand"
+            ></ng-container> -->
+        <ng-container *ngTemplateOutlet="list"></ng-container>
+      </md-top-bar-mobile>
+
+    </header>
+    <!-- <ng-template #brand>
+          <a
+            href="javascript:void(0)"
+            md-top-bar-brand
+            title="Momentum UI"
+            icon="icon-cisco-logo"
+          ></a>
+        </ng-template> -->
+
+    <ng-template #list>
+      <!-- <a md-list-item link="javascript:void(0)" [active]="true">Develop</a>
+          <a md-list-item link="javascript:void(0)">Styles</a>
+          <a md-list-item link="javascript:void(0)">Layout</a> -->
+      <input *ngIf="showMessages" class="md-input member-input" id="userInput" [(ngModel)]="addUser" type="text"
+        placeholder="Add members to space">
+      <a *ngIf="showMessages" md-list-item>
+        <i class="md-icon icon icon-add_24 icon-weight-bold" (click)="addUserToRoom()"></i>
+      </a>
+    </ng-template>
+
+  </div>
   <div class="context" id="main" class="columns medium-10">
+
     <div class="row logout-btn">
-      <button md-button aria-label="myAriaLabel" color="blue" (click)="logout()">
+      <!-- <button md-button aria-label="myAriaLabel" color="blue" (click)="logout()">
         Logout
-      </button>
+      </button> -->
     </div>
-    <div class="row">
+    <div #scrollMe class="row message-content-div">
       <div class="center" *ngIf="!showMessages">
         <img class="logo" src="assets/images/WebexTeams-icon.png" alt="WebEx Teams">
         <br>
@@ -20,21 +69,25 @@
           </span>
           <br>
           <div class="message-right">
-          <span class="md-badge md-badge--pastel ">
-            <div md-list-item label='{{message.text}}'></div>
-          </span>
-         </div>
+            <span class="md-badge md-badge--pastel">
+              <div md-list-item class="message-div">{{message.text}}</div>
+            </span>
+          </div>
           <br>
         </md-list>
       </div>
     </div>
     <div class="row sendmsg" *ngIf="showMessages">
-      <md-input-container inputSize="medium-30" label="Write a message">
-        <input mdInput  [(ngModel)]="message" id="send-msg" />
-      </md-input-container>
-       <button md-button aria-label="myAriaLabel" color="blue" (click)="sendMessageToRoom()">
-        Send
-       </button>
+      <div class="columns medium-11">
+        <md-input-container inputSize="medium-24">
+          <textarea mdInput [(ngModel)]="message" id="send-msg" placeholder="Write a message"></textarea>
+        </md-input-container>
+      </div>
+      <div class="columns medium-1 send-message-btn">
+        <button md-button aria-label="myAriaLabel" color="blue" (click)="sendMessageToRoom()">
+          Send
+        </button>
+      </div>
     </div>
     <!-- <div class="center">
       <h1>Room SDKs</h1>

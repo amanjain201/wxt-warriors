@@ -29,10 +29,47 @@
 
   .sendmsg{
     border-top: 1px solid black;
+    margin-left: 200px;
+    width: 100%;
+    padding-top: 7px;
   }
 
   .message-right{
     text-align: right;
   }
 
+  .member-input {
+    width: 346px;
+    border-radius: 25px;
+  }
+  .topbar-action-div {
+    width: 500px;
+  }
+
+  .icon-weight-bold {
+    font-weight: bold;
+  }
+
+  .top-bar-css {
+    margin-left: 92px;
+    width: 105%;
+  }
+
+  .message-content-div {
+    margin-left: 200px;
+    width: 100%;
+    height: 750px;
+    overflow-y: scroll;
+  }
+
+  .message-div {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+  }
+
+  .send-message-btn {
+    text-align: center;
+    padding-top: 12px;
+  }
   

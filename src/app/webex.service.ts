@@ -67,8 +67,8 @@ export class WebexService {
     }
   }
 
-  addUserToRoom(newUser: string) {
-    this.webex.memberships.create(this.getMembershipObject(this.createdRoomId, newUser));
+  async addUserToRoom(newUser: string, roomId:string) {
+    this.webex.memberships.create(this.getMembershipObject(roomId, newUser));
   }
 
   removeRoom() {

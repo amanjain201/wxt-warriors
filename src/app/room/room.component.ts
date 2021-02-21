@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewChecked, ElementRef, ViewChild, } from '@angular/core';
 import { WebexService } from '../webex.service';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 @Component({
   selector: 'app-webex',
@@ -7,6 +8,7 @@ import { WebexService } from '../webex.service';
   styleUrls: ['./room.component.css']
 })
 export class RoomComponent implements OnInit {
+  @ViewChild('scrollMe') private myScrollContainer: ElementRef;
   roomName: string;
   createdRoomId: string;
   addUser: string;
@@ -24,7 +26,11 @@ export class RoomComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.scrollToBottom();
+  }
 
+  ngAfterViewChecked() {
+    this.scrollToBottom();
   }
 
   createRoom() {
@@ -34,7 +40,24 @@ export class RoomComponent implements OnInit {
   }
 
   addUserToRoom() {
-    this.webexService.addUserToRoom(this.addUser);
+    if (this.addUser === undefined || this.addUser.length === 0) {
+      Swal.fire(
+        'Error',
+        'Please enter a person email id to add',
+        'error'
+      )
+      // alert("Please enter a person email id to add")
+      return;
+    }
+    this.webexService.addUserToRoom(this.addUser, this.selectedRoomId).then(() => {
+      Swal.fire(
+        'Success',
+        this.addUser + ' had been added successfully',
+        'success'
+      ).then(() => {
+        this.addUser = "";
+      })
+    })
   }
 
   removeRoom() {
@@ -52,30 +75,30 @@ export class RoomComponent implements OnInit {
   getRoomDetails(room) {
     this.selectedRoomId = room.id;
     this.getMessageHistory();
-    if(this.listenEventActivated === false) {
+    if (this.listenEventActivated === false) {
       this.listenToMessages();
     }
-    
+
   }
 
   listenToMessages() {
     this.webex = this.webexService.getInstance();
-      this.webex.messages.listen()
-        .then(() => {
-          this.listenEventActivated = true;
-          console.log('listening to message events');
-          this.webex.messages.on('created', (event) => {
-            if (event.data.roomId === this.selectedRoomId) {
-              console.log(`Got a message:created event:\n${event}`)
-              console.log(event);
-              this.listMessages.push(event.data);
-              return event;
-            }
+    this.webex.messages.listen()
+      .then(() => {
+        this.listenEventActivated = true;
+        console.log('listening to message events');
+        this.webex.messages.on('created', (event) => {
+          if (event.data.roomId === this.selectedRoomId) {
+            console.log(`Got a message:created event:\n${event}`)
+            console.log(event);
+            this.listMessages.push(event.data);
+            return event;
           }
-          );
-          //this.webex.messages.on('deleted', (event) => console.log(`Got a message:deleted event:\n${event}`));
-        })
-        .catch((e) => alert(`Unable to register for message events: ${e}`));
+        }
+        );
+        //this.webex.messages.on('deleted', (event) => console.log(`Got a message:deleted event:\n${event}`));
+      })
+      .catch((e) => alert(`Unable to register for message events: ${e}`));
 
   }
 
@@ -92,6 +115,12 @@ export class RoomComponent implements OnInit {
 
   logout() {
     this.webexService.onLogout();
+  }
+
+  scrollToBottom(): void {
+    try {
+      this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+    } catch (err) { }
   }
 
 }
