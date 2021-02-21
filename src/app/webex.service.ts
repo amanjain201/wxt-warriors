@@ -81,7 +81,7 @@ export class WebexService {
 
   async onListRoom() {
     return this.webex.rooms.list({
-      max: 5
+      max: 10
     });
   }
 
