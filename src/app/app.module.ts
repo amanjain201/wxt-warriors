@@ -8,13 +8,15 @@ import { RoomComponent } from './room/room.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { ButtonModule, ListModule, ListItemModule, InputModule, TopbarModule } from '@momentum-ui/angular';
+import { ShortenTextPipe } from './shorten-text.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     RoomComponent,
     NavbarComponent,
-    HomeComponent
+    HomeComponent,
+    ShortenTextPipe
   ],
   imports: [
     BrowserModule,

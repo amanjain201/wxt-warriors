@@ -3,7 +3,6 @@
         <a class="nav-heading" routerLink="/">Cisco WebEx</a>
         <p class="nav-subheading">SDK Documentations</p>
     </div>
-    <a routerLink="/rooms" routerLinkActive="active">Room</a>
     <div class="dropdown-div-txt">Your Spaces</div>
     <div class="dropdown-div">
         <i class="md-icon icon icon-arrow-down_24 dropdown-icon" *ngIf="!showRooms" (click)="listRooms()"></i>
@@ -11,6 +10,6 @@
     </div>
     
     <md-list *ngIf="showRooms">
-        <div md-list-item *ngFor="let room of listOfRooms" label='{{room.title}}' (click)="sendRoomDetails(room)" class="list-rooms"></div>
+        <div md-list-item *ngFor="let room of listOfRooms" title="{{room.title}}" label='{{room.title | shortenText}}' (click)="sendRoomDetails(room)" class="list-rooms"></div>
     </md-list>
 </div>
