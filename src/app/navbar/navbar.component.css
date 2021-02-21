@@ -50,6 +50,12 @@
   color:  #f1f1f1;
 }
 
+.room-list-div{
+  height:700px;
+  overflow-y: scroll;
+}
+
+
 .dropdown-icon {
   color: #f1f1f1;
   cursor: pointer;
@@ -76,5 +82,17 @@
   border-color: grey;
   width: 95%;
   border-radius: 25px;
+}
+
+.footer{
+  color:white;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  text-align: center;
+  padding-bottom:20px;
+  font-size: 16px;
+  border-top: 1px solid #f1f1f1;
+  width: 300px;
 }
 

@@ -13,10 +13,14 @@
         <i class="md-icon icon icon-arrow-down_24 dropdown-icon" *ngIf="!showRooms" (click)="listRooms()"></i>
         <i class="md-icon icon icon-arrow-up_24 dropdown-icon" *ngIf="showRooms" (click)="hideRooms()"></i>
     </div>
-
+    <div class="room-list-div">
     <md-list *ngIf="showRooms">
         <div md-list-item *ngFor="let room of listOfRooms" title="{{room.title}}" label='{{room.title | shortenText}}' (click)="sendRoomDetails(room)" class="list-rooms"></div>
     </md-list>
+    </div>
+    <div class="footer row" title="{{profileName}}">
+      Welcome {{profileName | shortenText}}
+    </div>
 </div>
 <div class="md-modal__backdrop fade in" *ngIf="showCreateRoomModal">
     <div role="dialog" id="react-aria-modal-dialog" class="md-modal md-modal--small in" aria-labelledby="modal3">

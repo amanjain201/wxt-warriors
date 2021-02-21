@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import Webex from 'webex';
 
 @Injectable({
@@ -9,7 +10,7 @@ export class WebexService {
   webex: any;
   createdRoomId: string;
 
-  constructor() { }
+  constructor(public http: HttpClient) { }
 
   performLogin() {
     this.webex = Webex.init({
@@ -27,7 +28,7 @@ export class WebexService {
     this.listenForWebex();
   }
 
-  initializeWebexObjectWithClientToken() {
+  async initializeWebexObjectWithClientToken() {
     this.webex = Webex.init({
       config: {
         meetings: {
@@ -51,6 +52,16 @@ export class WebexService {
         this.webex.authorization.initiateLogin();
       }
     });
+  }
+
+  getProfileInfo() {
+    let basicAuthHeaderString = 'Bearer ' + localStorage.getItem('webex_token');
+    let headers = new HttpHeaders({
+      'Authorization': basicAuthHeaderString,
+      'Content-Type': 'application/json',
+    });
+    
+    return this.http.get<any>( 'https://webexapis.com/v1/people/me' , { headers: headers });
   }
 
   async createRoom(roomName: string) {
@@ -81,7 +92,7 @@ export class WebexService {
 
   async onListRoom() {
     return this.webex.rooms.list({
-      max: 10
+      max: 30
     });
   }
 

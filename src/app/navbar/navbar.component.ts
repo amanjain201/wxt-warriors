@@ -15,6 +15,7 @@ export class NavbarComponent implements OnInit {
   @Output() roomDetails = new EventEmitter<string>();
   roomName = "";
   showCreateRoomModal = false;
+  profileName = "";
   constructor(private webexService: WebexService) { }
 
   ngOnInit(): void {
@@ -22,6 +23,17 @@ export class NavbarComponent implements OnInit {
   }
 
   listRooms() {
+    this.webexService.getProfileInfo().subscribe(
+      res => {
+        this.profileName =  res.displayName;
+        console.log(this.profileName);
+      }
+      ,
+      (error: Response) => {
+        console.log(error.status + " " + error.statusText);
+
+      });
+      
     this.webexService.onListRoom().then((rooms) => {
       console.log(rooms.items)
       this.listOfRooms = rooms.items;
