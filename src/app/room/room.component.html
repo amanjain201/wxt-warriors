@@ -12,6 +12,7 @@
         <ng-container *ngTemplateOutlet="list"></ng-container>
       </md-top-bar-nav>
       <md-top-bar-right >
+        <div><app-call *ngIf="showMessages"></app-call> </div>
         <div>
           <a *ngIf="showMessages" md-list-item>
             <i class="md-icon icon icon-participant-add_28 icon-weight-bold" title="Add user" (click)="openAddUserModal()"></i>

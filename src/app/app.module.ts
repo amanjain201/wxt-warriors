@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { ButtonModule, ListModule, ListItemModule, InputModule, TopbarModule } from '@momentum-ui/angular';
 import { ShortenTextPipe } from './shorten-text.pipe';
 import { HttpClientModule } from '@angular/common/http';
+import { CallComponent } from './call/call.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { HttpClientModule } from '@angular/common/http';
     RoomComponent,
     NavbarComponent,
     HomeComponent,
-    ShortenTextPipe
+    ShortenTextPipe,
+    CallComponent
   ],
   imports: [
     BrowserModule,
