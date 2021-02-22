@@ -136,10 +136,22 @@ export class RoomComponent implements OnInit {
     messages.then((m) => {
       this.listMessages = m.items;
       this.listMessages.reverse();
+      if(this.selectedRoomType === "direct") {
+        this.setOtherPersonEmailToLocalStorage(m.items);
+      }
       console.log(this.listMessages);
     });
   }
 
+  setOtherPersonEmailToLocalStorage(allMessages) {
+    for(let i=0; i<allMessages.length; i++) {
+      if(allMessages[i].personEmail !== localStorage.getItem("profile_email")) {
+          let initialPart = allMessages[i].personEmail.split("@")[0];
+          localStorage.setItem("callee_url",initialPart+ "@cisco.webex.com");
+          break;
+      }
+    }
+  }
   logout() {
     this.webexService.onLogout();
   }

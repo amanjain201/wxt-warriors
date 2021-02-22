@@ -27,6 +27,8 @@ export class NavbarComponent implements OnInit {
   listRooms() {
     this.webexService.getProfileInfo().subscribe(
       res => {
+        console.log(res);
+        localStorage.setItem("profile_email", res.xmppFederationJid);
         this.profileName =  res.displayName;
         console.log(this.profileName);
       }

@@ -56,14 +56,17 @@ export class CallComponent implements OnInit {
 
     listRooms() {
         this.webex.onListRoom().then((rooms) => {
-            console.log(JSON.stringify(rooms.items))
+            // console.log(JSON.stringify(rooms.items))
             //this.rooms = rooms.items;
         })
     }
     onDial() {
         //localStorage.setItem('invite',this.invitee)
-
-        return this.webex.webex.meetings.create('shybv@cisco.webex.com').then((meeting) => {
+        let invitee = "amanjain@cisco.webex.com";
+        if(localStorage.getItem("callee_url") !== null) {
+            invitee = localStorage.getItem("callee_url");
+        }
+        return this.webex.webex.meetings.create(invitee).then((meeting) => {
             this.meet = meeting;
             this.meetCreate = true;
             this.incomingMeet = false;

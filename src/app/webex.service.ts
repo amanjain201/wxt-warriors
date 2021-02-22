@@ -92,7 +92,7 @@ export class WebexService {
 
   async onListRoom() {
     return this.webex.rooms.list({
-      max: 30
+      max: 500
     });
   }
 
