@@ -51,9 +51,9 @@
 
     <ng-template #list>
       <a md-list-item class="room-title">{{selectedRoomTitle}}</a>
-      <div><app-call *ngIf="showMessages"></app-call> </div>
+      <div><app-call *ngIf="showMessages && selectedRoomType == 'direct'"></app-call> </div>
       <div>
-          <button *ngIf="showMessages"
+          <button *ngIf="showMessages && selectedRoomType == 'group'"
           class="md-button md-button--circle md-button--48 md-activity md-activity__camera"
           alt="Add Participants" type="button" aria-label="Add user" title="Add user" (click)="openAddUserModal()">
           <span class="md-button__children">

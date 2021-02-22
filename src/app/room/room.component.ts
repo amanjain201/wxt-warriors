@@ -24,6 +24,7 @@ export class RoomComponent implements OnInit {
   incoming_msg;
   listenEventActivated: boolean = false;
   showAddUserModal = false;
+  selectedRoomType:string = "";
   constructor(private webexService: WebexService) {
   }
 
@@ -99,6 +100,7 @@ export class RoomComponent implements OnInit {
     //console.log(room);
     this.selectedRoomId = room.id;
     this.selectedRoomTitle = room.title;
+    this.selectedRoomType = room.type;
     this.getMessageHistory();
     if (this.listenEventActivated === false) {
       this.listenToMessages();
