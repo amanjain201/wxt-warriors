@@ -2,7 +2,7 @@
     <div class="heading row">
         <div class="columns medium-9 space-search-div">
             <input class="md-input space-search-txt-input" id="spaceInput" type="text"
-        placeholder="Search a space">
+        placeholder="Search a space" [(ngModel)]="searchRoomText" (ngModelChange)="searchSpaceFilter()">
             
         </div>
         <div class="columns medium-3">

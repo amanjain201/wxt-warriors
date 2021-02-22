@@ -10,12 +10,14 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 })
 export class NavbarComponent implements OnInit {
   listOfRooms: any = [];
+  allRooms: any = [];
   showRooms: boolean = false;
   incoming_msg_event;
   @Output() roomDetails = new EventEmitter<string>();
   roomName = "";
   showCreateRoomModal = false;
   profileName = "";
+  searchRoomText:string;
   constructor(private webexService: WebexService) { }
 
   ngOnInit(): void {
@@ -37,6 +39,7 @@ export class NavbarComponent implements OnInit {
     this.webexService.onListRoom().then((rooms) => {
       console.log(rooms.items)
       this.listOfRooms = rooms.items;
+      this.allRooms = rooms.items;
       this.showRooms = true;
     }).catch((err) => {
       console.log(err);
@@ -89,5 +92,29 @@ export class NavbarComponent implements OnInit {
   closeModal() {
     this.showCreateRoomModal = false;
   }
+
+  searchSpaceFilter() {
+    if (this.allRooms.length === 0) {
+      this.listRooms();
+    }
+    console.log(this.allRooms);
+    console.log(this.searchRoomText);
+    if(this.searchRoomText !== undefined && this.searchRoomText.length > 0) {
+      this.listOfRooms = this.filterRooms(this.allRooms, this.searchRoomText)
+    } else {
+      this.listOfRooms = this.allRooms;
+    }  
+  }
+
+  filterRooms(allRooms, searchText) {
+    let filteredRooms = [];
+    for(let i=0; i < allRooms.length; i++) {
+      if(allRooms[i].title.toLowerCase().includes(searchText.trim().toLowerCase())) {
+        filteredRooms.push(allRooms[i]);
+      }
+    }
+    return filteredRooms;
+  }
+
 
 }
