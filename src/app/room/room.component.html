@@ -10,16 +10,24 @@
           ></ng-container> -->
       <md-top-bar-nav>
         <ng-container *ngTemplateOutlet="list"></ng-container>
+
       </md-top-bar-nav>
       <md-top-bar-right >
-        <div><app-call *ngIf="showMessages"></app-call> </div>
+        <!-- <div><app-call *ngIf="showMessages"></app-call> </div>
         <div>
+            <button *ngIf="showMessages"
+            class="md-button md-button--circle md-button--48 md-activity md-activity__camera"
+            alt="Add Participants" type="button" aria-label="Add user" title="Add user" (click)="openAddUserModal()">
+            <span class="md-button__children">
+              <i class="icon icon-participant-add_16"></i>
+            </span>
+          </button>
           <a *ngIf="showMessages" md-list-item>
             <i class="md-icon icon icon-participant-add_28 icon-weight-bold" title="Add user" (click)="openAddUserModal()"></i>
           </a>
-        </div>
+        </div> -->
         <div class="logout-btn">
-          <i class="md-icon icon icon-exit-room_28 icon-weight-bold" (click)="logout()" title="Logout"></i>
+          <i class="md-icon icon icon-exit-room_28 icon-weight-bold logout-css" (click)="logout()" title="Logout"></i>
         </div>
       </md-top-bar-right>
 
@@ -43,6 +51,16 @@
 
     <ng-template #list>
       <a md-list-item class="room-title">{{selectedRoomTitle}}</a>
+      <div><app-call *ngIf="showMessages"></app-call> </div>
+      <div>
+          <button *ngIf="showMessages"
+          class="md-button md-button--circle md-button--48 md-activity md-activity__camera"
+          alt="Add Participants" type="button" aria-label="Add user" title="Add user" (click)="openAddUserModal()">
+          <span class="md-button__children">
+            <i class="icon icon-participant-add_16"></i>
+          </span>
+        </button>
+      </div>
       <!-- <a md-list-item link="javascript:void(0)">Styles</a>
           <a md-list-item link="javascript:void(0)">Layout</a>  -->
     </ng-template>
